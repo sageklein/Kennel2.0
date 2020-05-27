@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 //import the components we will need
-import AnimalCard from '../../components/animal/AnimalCard';
-import AnimalManager from '../../modules/AnimalManager';
+import AnimalCard from '../animal/AnimalCard';
+import AnimalManager from '../modules/AnimalManager';
 
 const AnimalList = () => {
   // The initial state is an empty array
