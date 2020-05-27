@@ -1,7 +1,7 @@
-
+import ApplicationViews from "../ApplicationViews";
 import React from "react";
 
-const AnimalCard = props => {
+const OwnerCard = (props) => {
 	return (
 		<div className="card">
 			<div className="card-content">
@@ -10,11 +10,11 @@ const AnimalCard = props => {
 				</picture> */}
 				<h3>
 					Name:{" "}
-					<span className="card-petname">{props.animal.name}</span>
+					<span className="card-ownername">{props.owner.name}</span>
 				</h3>
-				<p>Breed: {props.animal.breed}</p>
+				<p>Breed: {props.owner.breed}</p>
 			</div>
 		</div>
 	);
 };
-export default AnimalCard
+export default OwnerCard;
