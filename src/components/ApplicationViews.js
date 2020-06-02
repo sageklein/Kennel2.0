@@ -1,12 +1,10 @@
 import { Route } from "react-router-dom";
 import React from "react";
 import Home from "../home/Home";
-
+import Login from "./auth/Login"
 import AnimalList from "./animal/AnimalList";
-
 import EmployeeList from "./employee/EmployeeList";
-
-// import OwnerList from "./owner/OwnerList";
+import OwnerList from "./owner/OwnerList";
 import LocationList from "./location/LocationList";
 
 const ApplicationViews = () => {
@@ -38,13 +36,16 @@ const ApplicationViews = () => {
 					return <EmployeeList />;
 				}}
 			/>
-{/* 
+
 			<Route
 				path="/owners"
 				render={(props) => {
 					return <OwnerList />;
 				}}
-			/> */}
+			/>
+
+			 <Route path="/login" 
+			 component={Login} />
 
 		</React.Fragment>
 	);

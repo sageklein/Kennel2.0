@@ -1,4 +1,4 @@
-import ApplicationViews from "../ApplicationViews";
+
 import React from "react";
 
 const OwnerCard = (props) => {

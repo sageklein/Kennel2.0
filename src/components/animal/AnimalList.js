@@ -1,30 +1,53 @@
-import React, { useState, useEffect } from 'react';
-//import the components we will need
-import AnimalCard from '../animal/AnimalCard';
-import APIManager from '../modules/APIManager';
+import React, { useEffect, useState } from "react";
+import AnimalManager from "../modules/AnimalManager";
+import AnimalCard from "./AnimalCard";
 
-const AnimalList = () => {
-  // The initial state is an empty array
-  const [animals, setAnimals] = useState([]);
+const AnimalList = (props) => {
+	// Create an initial state of an empty array called animals, and a function for updating animals, called setAnimals
+	const [animals, setAnimals] = useState([]);
 
-  const getAnimals = () => {
-    // After the data comes back from the API, we
-    //  use the setAnimals function to update state
-    return APIManager.getAll().then(animalsFromAPI => {
-      setAnimals(animalsFromAPI)
-    });
-  };
+	const getAnimals = () => {
+		return AnimalManager.getAll().then((animalsFromAPI) => {
+			console.log(animalsFromAPI);
+			setAnimals(animalsFromAPI);
+		});
+	};
 
-  // got the animals from the API on the component's first render
-  useEffect(() => {
-    getAnimals();
-  }, []);
+	const deleteAnimal = (id) => {
+		AnimalManager.delete(id).then(() =>
+			AnimalManager.getAll().then(setAnimals)
+		);
+	};
 
-  // Finally we use map() to "loop over" the animals array to show a list of animal cards
-  return (
-    <div className="container-cards">
-      { animals.map(animal => <AnimalCard key={animal.id} animal={animal}/>)}
-    </div>
-  );
+	// When AnimalList mounts to the DOM for the first time, go get the animals
+	useEffect(() => {
+		getAnimals();
+	}, []);
+
+	return (
+		<>
+			<section className="section-content">
+				<button
+					type="button"
+					className="btn"
+					onClick={() => {
+						props.history.push("/animals/new");
+					}}
+				>
+					Admit Animal
+				</button>
+			</section>
+			<div className="container-cards">
+				{animals.map((animal) => (
+					<AnimalCard
+						key={animal.id}
+						animal={animal}
+						deleteAnimal={deleteAnimal}
+					/>
+				))}
+			</div>
+		</>
+	);
 };
-export default AnimalList
+
+export default AnimalList;
