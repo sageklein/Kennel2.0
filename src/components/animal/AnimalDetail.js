@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import AnimalManager from "../../modules/AnimalManager";
-import EmployeeManager from "../../modules/EmployeeManager";
+import AnimalManager from "../modules/AnimalManager";
+import EmployeeManager from "../modules/EmployeeManager";
 import "./AnimalDetail.css";
 
 const AnimalDetail = (props) => {
@@ -24,7 +24,6 @@ const AnimalDetail = (props) => {
 	}, [props.animalId]);
 
 	const handleDelete = () => {
-		console.log("WTF?");
 		//invoke the delete function in AnimalManger and re-direct to the animal list.
 		setIsLoading(true);
 		AnimalManager.delete(props.animalId).then(() =>
@@ -36,7 +35,7 @@ const AnimalDetail = (props) => {
 		<div className="card">
 			<div className="card-content">
 				<picture>
-					<img src={require("./dog.svg")} alt="My Dog" />
+					<img src={require("./dog.jpg")} alt="My Dog" />
 				</picture>
 				<h3>
 					Name:{" "}
